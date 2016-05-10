@@ -8,6 +8,17 @@
 
 #import "FDXMPPTool.h"
 #import "FDUserInfo.h"
+//登陆协议 登陆成功 登陆失败 登陆网络错误
+@protocol KRLoginDelegate <NSObject>
+//登陆成功
+- (void) loginSuccess;
+//登陆失败
+- (void) loginFaild;
+//网路错误
+- (void) loginNetError;
+
+@end
+
 @interface FDXMPPTool ()<XMPPStreamDelegate>
 
 /**
@@ -28,7 +39,7 @@
 - (void) sendOnline;
 @end
 @implementation FDXMPPTool
-
+singleton_implementation(FDXMPPTool)
 /**
  *  准备一些数据 设置流
  */
@@ -40,6 +51,8 @@
  *  连接服务器
  */
 - (void) connectToServer{
+    //先把之前的接连断开
+    [self.xmppStream disconnect];
     if (self.xmppStream == nil) {
         [self setupXmppStream];
     }
@@ -75,9 +88,9 @@
  */
 - (void) sendOnline{
     //这个对象代表在线
-    XMPPPresence *resence = [XMPPPresence presence];
+    XMPPPresence *presence = [XMPPPresence presence];
     //发送在线消息
-    [self.xmppStream sendElement:resence];
+    [self.xmppStream sendElement:presence];
 }
 #pragma mark XMPPStreamDelegate
 //连接成功
@@ -107,8 +120,10 @@
 
 
 
+- (void)userLogin{
+    [self connectToServer];
+}
 
 
 
-singleton_implementation(FDXMPPTool)
 @end

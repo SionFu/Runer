@@ -8,7 +8,10 @@
 
 #import "FDViewController.h"
 #import "FDUserInfo.h"
-@interface FDViewController ()
+#import "FDXMPPTool.h"
+
+@interface FDViewController ()<FDLoginDelegate>
+
 /**
  *  用户名字段
  */
@@ -57,5 +60,24 @@
      */
     [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
     [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
+    
+    [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
+    //使用XMPPFrameWork 连接服务器 完成登陆
+    [[FDXMPPTool sharedFDXMPPTool]userLogin];
+
+
+}
+
+#pragma mark -- KRLoginDelegate
+- (void)loginSuccess{
+    NSLog(@"登陆控制器中 获取登陆成功");
+}
+
+- (void)loginFaild{
+    NSLog(@"登陆控制器 获取的呢路状态失败");
+}
+
+- (void)loginNetError{
+    NSLog(@"登陆控制器中 获取登陆状态 网络失败");
 }
 @end
