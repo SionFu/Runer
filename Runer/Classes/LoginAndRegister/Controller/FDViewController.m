@@ -27,6 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //添加输入框左边的额ico
+    [self addUserIcon];
+    
+    }
+
+#pragma mark -- 界面视图相关
+- (void)addUserIcon{
     UIImageView *leftVN = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon"]];
     leftVN.frame = CGRectMake(0, 0, 55, 20);
     leftVN.contentMode = UIViewContentModeCenter;
@@ -38,8 +45,8 @@
     leftVP.frame = CGRectMake(0, 0, 55, 20);
     leftVP.contentMode = UIViewContentModeCenter;
     self.userPasswordField.leftView = leftVP;
-    self.userPasswordField.leftViewMode = UITextFieldViewModeAlways;}
-
+    self.userPasswordField.leftViewMode = UITextFieldViewModeAlways;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
