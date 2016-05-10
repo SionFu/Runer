@@ -18,10 +18,10 @@
 /* Begin PBXFileReference section */
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		85EE28C21CE16CBB00FCAA8F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		85EE28C31CE16CBB00FCAA8F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
+		85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../AppDelegate.m; sourceTree = "<group>"; };
+		85EE28C21CE16CBB00FCAA8F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../ViewController.h; sourceTree = "<group>"; };
+		85EE28C31CE16CBB00FCAA8F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../ViewController.m; sourceTree = "<group>"; };
 		85EE28C61CE16CBB00FCAA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85EE28CB1CE16CBB00FCAA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,11 +58,7 @@
 		85EE28BB1CE16CBB00FCAA8F /* Runer */ = {
 			isa = PBXGroup;
 			children = (
-				85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */,
-				85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */,
-				85EE28C21CE16CBB00FCAA8F /* ViewController.h */,
-				85EE28C31CE16CBB00FCAA8F /* ViewController.m */,
-				85EE28C51CE16CBB00FCAA8F /* Main.storyboard */,
+				85EE28D31CE16EE400FCAA8F /* Classes */,
 				85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */,
 				85EE28CA1CE16CBB00FCAA8F /* LaunchScreen.storyboard */,
 				85EE28CD1CE16CBB00FCAA8F /* Info.plist */,
@@ -77,6 +73,90 @@
 				85EE28BD1CE16CBB00FCAA8F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		85EE28D31CE16EE400FCAA8F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				85EE28DC1CE16F3600FCAA8F /* Other */,
+				85EE28D41CE16EE400FCAA8F /* Category */,
+				85EE28D51CE16EE400FCAA8F /* Lib */,
+				85EE28D61CE16EE400FCAA8F /* LoginAndRegister */,
+				85EE28DA1CE16EE400FCAA8F /* Main */,
+				85EE28DB1CE16EE400FCAA8F /* Tool */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		85EE28D41CE16EE400FCAA8F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		85EE28D51CE16EE400FCAA8F /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		85EE28D61CE16EE400FCAA8F /* LoginAndRegister */ = {
+			isa = PBXGroup;
+			children = (
+				85EE28D71CE16EE400FCAA8F /* Model */,
+				85EE28D81CE16EE400FCAA8F /* Tool */,
+				85EE28D91CE16EE400FCAA8F /* View */,
+			);
+			path = LoginAndRegister;
+			sourceTree = "<group>";
+		};
+		85EE28D71CE16EE400FCAA8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85EE28D81CE16EE400FCAA8F /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		85EE28D91CE16EE400FCAA8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85EE28DA1CE16EE400FCAA8F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				85EE28C51CE16CBB00FCAA8F /* Main.storyboard */,
+				85EE28C21CE16CBB00FCAA8F /* ViewController.h */,
+				85EE28C31CE16CBB00FCAA8F /* ViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		85EE28DB1CE16EE400FCAA8F /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		85EE28DC1CE16F3600FCAA8F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */,
+				85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +245,7 @@
 				85EE28C61CE16CBB00FCAA8F /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		85EE28CA1CE16CBB00FCAA8F /* LaunchScreen.storyboard */ = {
@@ -299,6 +380,7 @@
 				85EE28D21CE16CBB00FCAA8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
