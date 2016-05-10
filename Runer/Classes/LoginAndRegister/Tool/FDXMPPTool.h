@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
+#import "Singleton.h"
 /**
  *  包装XMPPFramework的工具类
  */
 @interface FDXMPPTool : NSObject
+singleton_interface(FDXMPPTool)
 /**
  *  和服务器交互最主要的对象
  */
