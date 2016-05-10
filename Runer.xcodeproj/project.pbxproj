@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851D239D1CE18AB100CB23C5 /* FDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D239C1CE18AB100CB23C5 /* FDUserInfo.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -14,9 +15,13 @@
 		85EE28C91CE16CBB00FCAA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */; };
 		85EE28CC1CE16CBB00FCAA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28CA1CE16CBB00FCAA8F /* LaunchScreen.storyboard */; };
 		85EE28DE1CE16FD800FCAA8F /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28DD1CE16FD800FCAA8F /* LoginAndRegister.storyboard */; };
+		85EE28E21CE17E0C00FCAA8F /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28E11CE17E0C00FCAA8F /* FDViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851D239B1CE18AB100CB23C5 /* FDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserInfo.h; sourceTree = "<group>"; };
+		851D239C1CE18AB100CB23C5 /* FDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUserInfo.m; sourceTree = "<group>"; };
+		851D239E1CE18C2500CB23C5 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +33,8 @@
 		85EE28CB1CE16CBB00FCAA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85EE28CD1CE16CBB00FCAA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85EE28DD1CE16FD800FCAA8F /* LoginAndRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginAndRegister.storyboard; sourceTree = "<group>"; };
+		85EE28E01CE17E0C00FCAA8F /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
+		85EE28E11CE17E0C00FCAA8F /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +114,7 @@
 		85EE28D61CE16EE400FCAA8F /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				85EE28DF1CE17DF500FCAA8F /* Controller */,
 				85EE28D71CE16EE400FCAA8F /* Model */,
 				85EE28D81CE16EE400FCAA8F /* Tool */,
 				85EE28D91CE16EE400FCAA8F /* View */,
@@ -117,6 +125,9 @@
 		85EE28D71CE16EE400FCAA8F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				851D239B1CE18AB100CB23C5 /* FDUserInfo.h */,
+				851D239E1CE18C2500CB23C5 /* Singleton.h */,
+				851D239C1CE18AB100CB23C5 /* FDUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +171,15 @@
 				85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		85EE28DF1CE17DF500FCAA8F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85EE28E01CE17E0C00FCAA8F /* FDViewController.h */,
+				85EE28E11CE17E0C00FCAA8F /* FDViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +256,8 @@
 			files = (
 				85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */,
 				85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */,
+				851D239D1CE18AB100CB23C5 /* FDUserInfo.m in Sources */,
+				85EE28E21CE17E0C00FCAA8F /* FDViewController.m in Sources */,
 				85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
