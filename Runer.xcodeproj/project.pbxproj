@@ -13,6 +13,7 @@
 		85EE28C71CE16CBB00FCAA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28C51CE16CBB00FCAA8F /* Main.storyboard */; };
 		85EE28C91CE16CBB00FCAA8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */; };
 		85EE28CC1CE16CBB00FCAA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28CA1CE16CBB00FCAA8F /* LaunchScreen.storyboard */; };
+		85EE28DE1CE16FD800FCAA8F /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EE28DD1CE16FD800FCAA8F /* LoginAndRegister.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85EE28CB1CE16CBB00FCAA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85EE28CD1CE16CBB00FCAA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85EE28DD1CE16FD800FCAA8F /* LoginAndRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginAndRegister.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				85EE28C51CE16CBB00FCAA8F /* Main.storyboard */,
 				85EE28C21CE16CBB00FCAA8F /* ViewController.h */,
 				85EE28C31CE16CBB00FCAA8F /* ViewController.m */,
+				85EE28DD1CE16FD800FCAA8F /* LoginAndRegister.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				85EE28CC1CE16CBB00FCAA8F /* LaunchScreen.storyboard in Resources */,
 				85EE28C91CE16CBB00FCAA8F /* Assets.xcassets in Resources */,
 				85EE28C71CE16CBB00FCAA8F /* Main.storyboard in Resources */,
+				85EE28DE1CE16FD800FCAA8F /* LoginAndRegister.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
