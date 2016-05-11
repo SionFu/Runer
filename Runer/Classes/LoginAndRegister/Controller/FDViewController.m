@@ -71,7 +71,7 @@
 
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
-    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎你\n%@!",[FDUserInfo sharedFDUserInfo].userName]];
+    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎你%@!",[FDUserInfo sharedFDUserInfo].userName]];
     NSLog(@"登陆控制器中 获取登陆成功");
 }
 
