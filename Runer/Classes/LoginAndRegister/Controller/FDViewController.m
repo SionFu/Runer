@@ -9,7 +9,7 @@
 #import "FDViewController.h"
 #import "FDUserInfo.h"
 #import "FDXMPPTool.h"
-
+#import "MBProgressHUD+KR.h"
 @interface FDViewController ()<FDLoginDelegate>
 
 /**
@@ -55,6 +55,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)loginBtnClick:(id)sender {
+    [FDUserInfo sharedFDUserInfo].userRegister = NO;
     /**
      *  把界面深的数据存入单例对象
      */
@@ -70,14 +71,17 @@
 
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
+    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎你\n%@!",[FDUserInfo sharedFDUserInfo].userName]];
     NSLog(@"登陆控制器中 获取登陆成功");
 }
 
 - (void)loginFaild{
+    [MBProgressHUD showError:@"登录失败"];
     NSLog(@"登陆控制器 获取的呢路状态失败");
 }
 
 - (void)loginNetError{
+    [MBProgressHUD showMessage:@"网络错误"];
     NSLog(@"登陆控制器中 获取登陆状态 网络失败");
 }
 @end

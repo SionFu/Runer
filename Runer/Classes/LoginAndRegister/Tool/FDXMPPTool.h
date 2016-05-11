@@ -21,12 +21,22 @@
 
 @end
 
+@protocol FDSRegisterDelegate <NSObject>
+
+//注册成功
+- (void) registerSuccess;
+//注册失败
+- (void) registerFaild;
+//网络错误
+- (void) registerNetError;
+@end
 /**
  *  包装XMPPFramework的工具类
  */
 @interface FDXMPPTool : NSObject
 singleton_interface(FDXMPPTool)
 @property (nonatomic, weak) id<FDLoginDelegate> loginDelegate;
+@property (nonatomic, weak) id<FDSRegisterDelegate> registerDelegate;
 /**
  *  和服务器交互最主要的对象
  */

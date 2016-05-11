@@ -37,6 +37,7 @@
  *  发送在线消息
  */
 - (void) sendOnline;
+
 @end
 @implementation FDXMPPTool
 singleton_implementation(FDXMPPTool)
@@ -58,9 +59,16 @@ singleton_implementation(FDXMPPTool)
     }
     self.xmppStream.hostName = FDXMPPPHOSTNAME;
     self.xmppStream.hostPort = FDXMPPPORT;
+    NSString *userName = nil;
+    if ([FDUserInfo sharedFDUserInfo].isUserRegister) {
+        userName = [FDUserInfo sharedFDUserInfo].userRegisterName;
+    }else{
     //构建一个jid
-    NSString *userName = [FDUserInfo sharedFDUserInfo].userName;
+        userName = [FDUserInfo sharedFDUserInfo].userName;
+    }
+    
     NSString *jidStr = [NSString stringWithFormat:@"%@@%@",userName,FDXMPPDOMAIN];
+    
     //设置jid
     self.xmppStream.myJID = [XMPPJID jidWithString:jidStr];
     //连接服务器
@@ -71,14 +79,20 @@ singleton_implementation(FDXMPPTool)
     }
 }
 /**
- *  发送密码
+ *  发送密码/发送注册密码
  */
 - (void) sendPassword{
     NSString *userPassword = nil;
     NSError *error = nil;
+    if ([FDUserInfo sharedFDUserInfo].isUserRegister) {
+      userPassword = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
+    [self.xmppStream registerWithPassword:userPassword error:&error];
+        
+    }else{
     userPassword = [FDUserInfo sharedFDUserInfo].userpassword;
     //使用密码进进行授权
     [self.xmppStream authenticateWithPassword:userPassword error:&error];
+    }
     if (error) {
         NSLog(@"%@",error.userInfo);
     }
@@ -93,25 +107,37 @@ singleton_implementation(FDXMPPTool)
     [self.xmppStream sendElement:presence];
 }
 #pragma mark XMPPStreamDelegate
+
+//注册成功
+- (void)xmppStreamDidRegister:(XMPPStream *)sender{
+    [self.registerDelegate registerSuccess];
+    NSLog(@"注册成功");
+}
+//注册失败
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
+    [self.registerDelegate registerFaild];
+    NSLog(@"%@注册失败%@",sender,error);
+}
 //连接成功
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
-    //发送密码进行授权
-    [self sendPassword];
+        //发送密码
+        [self sendPassword];
 }
 
 //连接失败
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     
     if (error) {
+        [self.loginDelegate loginNetError];
+        [self.registerDelegate registerNetError];
         NSLog(@"与服务器断开连接%@",error.userInfo);
     }
 }
 
-
 //授权成功
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     [self sendOnline];
-    
+    [self.loginDelegate loginSuccess];
     NSLog(@"授权成功");
 }
 //授权失败
@@ -125,6 +151,8 @@ singleton_implementation(FDXMPPTool)
     [self connectToServer];
 }
 
-
+- (void)userRegist{
+    [self connectToServer];
+}
 
 @end

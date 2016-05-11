@@ -140,6 +140,9 @@
 		851D25741CE1909100CB23C5 /* FDXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25731CE1909100CB23C5 /* FDXMPPTool.m */; };
 		851D25781CE193A600CB23C5 /* FDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25761CE193A600CB23C5 /* FDUserInfo.m */; };
 		8586A0221CE2BE7C009B6E87 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */; };
+		8586A0291CE2DD67009B6E87 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0251CE2DD67009B6E87 /* MBProgressHUD+KR.m */; };
+		8586A02A1CE2DD67009B6E87 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8586A0261CE2DD67009B6E87 /* MBProgressHUD.bundle */; };
+		8586A02B1CE2DD67009B6E87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0281CE2DD67009B6E87 /* MBProgressHUD.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -425,6 +428,11 @@
 		851D25771CE193A600CB23C5 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		8586A0201CE2BE7C009B6E87 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
 		8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRegisterViewController.m; sourceTree = "<group>"; };
+		8586A0241CE2DD67009B6E87 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
+		8586A0251CE2DD67009B6E87 /* MBProgressHUD+KR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+KR.m"; sourceTree = "<group>"; };
+		8586A0261CE2DD67009B6E87 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		8586A0271CE2DD67009B6E87 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8586A0281CE2DD67009B6E87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		85C98C041CE1B2E7002524C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1247,6 +1255,18 @@
 			path = libidn;
 			sourceTree = "<group>";
 		};
+		8586A0231CE2DD67009B6E87 /* MBProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8586A0241CE2DD67009B6E87 /* MBProgressHUD+KR.h */,
+				8586A0251CE2DD67009B6E87 /* MBProgressHUD+KR.m */,
+				8586A0261CE2DD67009B6E87 /* MBProgressHUD.bundle */,
+				8586A0271CE2DD67009B6E87 /* MBProgressHUD.h */,
+				8586A0281CE2DD67009B6E87 /* MBProgressHUD.m */,
+			);
+			path = MBProgessHUD;
+			sourceTree = "<group>";
+		};
 		85EE28B01CE16CBA00FCAA8F = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1329,7 @@
 		85EE28D51CE16EE400FCAA8F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				8586A0231CE2DD67009B6E87 /* MBProgessHUD */,
 				851D239F1CE18DBD00CB23C5 /* XMPP */,
 			);
 			path = Lib;
@@ -1453,6 +1474,7 @@
 				85EE28C71CE16CBB00FCAA8F /* Main.storyboard in Resources */,
 				85EE28DE1CE16FD800FCAA8F /* LoginAndRegister.storyboard in Resources */,
 				851D25671CE18DBE00CB23C5 /* README.txt in Resources */,
+				8586A02A1CE2DD67009B6E87 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1564,7 @@
 				851D251B1CE18DBD00CB23C5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				851D24FD1CE18DBD00CB23C5 /* XMPPParser.m in Sources */,
 				851D25031CE18DBD00CB23C5 /* XMPPProcessOne.m in Sources */,
+				8586A02B1CE2DD67009B6E87 /* MBProgressHUD.m in Sources */,
 				851D25781CE193A600CB23C5 /* FDUserInfo.m in Sources */,
 				851D24F31CE18DBD00CB23C5 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				851D25311CE18DBE00CB23C5 /* XMPPResultSet.m in Sources */,
@@ -1591,6 +1614,7 @@
 				851D252C1CE18DBE00CB23C5 /* XMPPvCardTempEmail.m in Sources */,
 				851D25521CE18DBE00CB23C5 /* XEP_0223.m in Sources */,
 				851D251E1CE18DBD00CB23C5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				8586A0291CE2DD67009B6E87 /* MBProgressHUD+KR.m in Sources */,
 				851D25631CE18DBE00CB23C5 /* DDLog.m in Sources */,
 				851D25641CE18DBE00CB23C5 /* DDTTYLogger.m in Sources */,
 				851D25531CE18DBE00CB23C5 /* XMPPAttentionModule.m in Sources */,

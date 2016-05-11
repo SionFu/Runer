@@ -8,7 +8,7 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
-//主机mign
+//主机名
 #define FDXMPPPHOSTNAME @"127.0.0.1"
 //端口号
 #define FDXMPPPORT 5222

@@ -31,5 +31,5 @@ singleton_interface(FDUserInfo)
 /**
  *  用来区分登录还是注册
  */
-@property (nonatomic, assign, getter=isUserRegister) BOOL *userRegister;
+@property (nonatomic, assign, getter=isUserRegister) BOOL userRegister;
 @end
