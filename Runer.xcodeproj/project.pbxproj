@@ -152,6 +152,7 @@
 		8586A04F1CE30352009B6E87 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0441CE30352009B6E87 /* AFURLRequestSerialization.m */; };
 		8586A0501CE30352009B6E87 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0461CE30352009B6E87 /* AFURLResponseSerialization.m */; };
 		8586A0511CE30352009B6E87 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0481CE30352009B6E87 /* AFURLSessionManager.m */; };
+		8586A0541CE31A57009B6E87 /* NSString+md5.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0531CE31A57009B6E87 /* NSString+md5.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -461,6 +462,8 @@
 		8586A0461CE30352009B6E87 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		8586A0471CE30352009B6E87 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		8586A0481CE30352009B6E87 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		8586A0521CE31A57009B6E87 /* NSString+md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+md5.h"; sourceTree = "<group>"; };
+		8586A0531CE31A57009B6E87 /* NSString+md5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+md5.m"; sourceTree = "<group>"; };
 		85C98C041CE1B2E7002524C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1376,6 +1379,8 @@
 		85EE28D41CE16EE400FCAA8F /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				8586A0521CE31A57009B6E87 /* NSString+md5.h */,
+				8586A0531CE31A57009B6E87 /* NSString+md5.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1654,6 +1659,7 @@
 				8586A0501CE30352009B6E87 /* AFURLResponseSerialization.m in Sources */,
 				851D24F71CE18DBD00CB23C5 /* NSXMLElement+XMPP.m in Sources */,
 				851D25021CE18DBD00CB23C5 /* XMPPGoogleSharedStatus.m in Sources */,
+				8586A0541CE31A57009B6E87 /* NSString+md5.m in Sources */,
 				851D25321CE18DBE00CB23C5 /* XMPPIQ+XEP_0060.m in Sources */,
 				851D25401CE18DBE00CB23C5 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				851D25501CE18DBE00CB23C5 /* XMPPTime.m in Sources */,

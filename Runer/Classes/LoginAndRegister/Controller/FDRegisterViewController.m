@@ -11,6 +11,7 @@
 #import "FDUserInfo.h"
 #import "MBProgressHUD+KR.h"
 #import "AFNetworking.h"
+#import "NSString+md5.h"
 @interface FDRegisterViewController ()<FDSRegisterDelegate>
 - (IBAction)backClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
@@ -103,8 +104,8 @@
     //准备参数
     NSMutableDictionary *parmaters = [NSMutableDictionary dictionary];
     parmaters[@"username"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
-#warning 未完成 md5 加密
-    parmaters[@"md5password"] = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
+#warning 完成 md5 加密
+    parmaters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userRegisterPassword md5Str1];
     
     parmaters[@"nickname"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
     //赋值一个性别 1 是男 0 是女
