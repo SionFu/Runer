@@ -139,6 +139,7 @@
 		851D25711CE18FBF00CB23C5 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 851D25701CE18FBF00CB23C5 /* libresolv.tbd */; };
 		851D25741CE1909100CB23C5 /* FDXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25731CE1909100CB23C5 /* FDXMPPTool.m */; };
 		851D25781CE193A600CB23C5 /* FDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25761CE193A600CB23C5 /* FDUserInfo.m */; };
+		8586A0221CE2BE7C009B6E87 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -422,6 +423,8 @@
 		851D25751CE193A600CB23C5 /* FDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserInfo.h; sourceTree = "<group>"; };
 		851D25761CE193A600CB23C5 /* FDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDUserInfo.m; sourceTree = "<group>"; };
 		851D25771CE193A600CB23C5 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		8586A0201CE2BE7C009B6E87 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
+		8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRegisterViewController.m; sourceTree = "<group>"; };
 		85C98C041CE1B2E7002524C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1380,6 +1383,8 @@
 			children = (
 				85EE28E01CE17E0C00FCAA8F /* FDViewController.h */,
 				85EE28E11CE17E0C00FCAA8F /* FDViewController.m */,
+				8586A0201CE2BE7C009B6E87 /* FDRegisterViewController.h */,
+				8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1577,6 +1582,7 @@
 				851D24FA1CE18DBD00CB23C5 /* XMPPJID.m in Sources */,
 				851D25011CE18DBD00CB23C5 /* XMPPCoreDataStorage.m in Sources */,
 				851D25591CE18DBE00CB23C5 /* DDList.m in Sources */,
+				8586A0221CE2BE7C009B6E87 /* FDRegisterViewController.m in Sources */,
 				851D252D1CE18DBE00CB23C5 /* XMPPvCardTempLabel.m in Sources */,
 				85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */,
 				851D25471CE18DBE00CB23C5 /* XMPPvCardAvatarModule.m in Sources */,

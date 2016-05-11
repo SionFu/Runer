@@ -98,9 +98,8 @@ singleton_implementation(FDXMPPTool)
     //发送密码进行授权
     [self sendPassword];
 }
+
 //连接失败
-
-
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     
     if (error) {
@@ -111,6 +110,8 @@ singleton_implementation(FDXMPPTool)
 
 //授权成功
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
+    [self sendOnline];
+    
     NSLog(@"授权成功");
 }
 //授权失败

@@ -34,4 +34,7 @@ singleton_interface(FDXMPPTool)
 
 //公开一个登陆接口
 - (void) userLogin;
+
+//公开一个注册接口
+- (void) userRegist;
 @end

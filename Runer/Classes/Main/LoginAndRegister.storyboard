@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景图" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-vg-w7m">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="背景图" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-vg-w7m">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <animations/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-n5-F9a">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-n5-F9a">
                                 <rect key="frame" x="44" y="132" width="327" height="112"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.5" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景框" translatesAutoresizingMaskIntoConstraints="NO" id="JQ8-fn-7VT">
@@ -76,7 +76,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeZ-Nh-uR6">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeZ-Nh-uR6">
                                 <rect key="frame" x="248" y="368" width="60" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -86,8 +86,11 @@
                                 <state key="normal" title="快速注册">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="HRI-Zw-y45" kind="show" id="gKV-ik-uby"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6J-FP-lDk">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6J-FP-lDk">
                                 <rect key="frame" x="98" y="368" width="60" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -123,7 +126,7 @@
                                 </constraints>
                                 <state key="normal" image="微博" backgroundImage="微博"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-dV-0za">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-dV-0za">
                                 <rect key="frame" x="50" y="295" width="314" height="49"/>
                                 <animations/>
                                 <constraints>
@@ -174,6 +177,7 @@
                             <constraint firstItem="agn-le-L2P" firstAttribute="top" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="60" id="zch-c5-pTJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="XZF-BY-NM0"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="userNameField" destination="ISD-sr-z6G" id="Anl-G2-zjF"/>
@@ -182,7 +186,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgE-td-NqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317" y="417"/>
+            <point key="canvasLocation" x="1129" y="417"/>
+        </scene>
+        <!--快速注册-->
+        <scene sceneID="BC0-7f-aGb">
+            <objects>
+                <viewController id="PVh-TD-ReY" customClass="FDRegisterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vCl-9L-eCx"/>
+                        <viewControllerLayoutGuide type="bottom" id="xBf-gf-ibJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RBb-DI-4fU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="快速注册" id="Kwi-Xo-vzy">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="tOW-lI-gsW">
+                            <connections>
+                                <action selector="backClick:" destination="PVh-TD-ReY" id="nlV-Tl-gTl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hoP-QM-eCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2331" y="417"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lcZ-Q2-2zG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HRI-Zw-y45" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="06k-0U-cG8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PVh-TD-ReY" kind="relationship" relationship="rootViewController" id="0wr-mz-1xd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndq-Lz-gwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1759" y="417"/>
         </scene>
     </scenes>
     <resources>

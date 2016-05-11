@@ -18,4 +18,18 @@ singleton_interface(FDUserInfo)
  * 用户密码
  */
 @property (nonatomic,strong) NSString *userpassword;
+
+/**
+ * 注册的用户名
+ */
+@property (nonatomic,strong) NSString *userRegisterName;
+/**
+ * 注册的密码
+ */
+@property (nonatomic,strong) NSString *userRegisterPassword;
+
+/**
+ *  用来区分登录还是注册
+ */
+@property (nonatomic, assign, getter=isUserRegister) BOOL *userRegister;
 @end
