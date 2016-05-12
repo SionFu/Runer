@@ -8,16 +8,6 @@
 
 #import "FDXMPPTool.h"
 #import "FDUserInfo.h"
-//登陆协议 登陆成功 登陆失败 登陆网络错误
-@protocol KRLoginDelegate <NSObject>
-//登陆成功
-- (void) loginSuccess;
-//登陆失败
-- (void) loginFaild;
-//网路错误
-- (void) loginNetError;
-
-@end
 
 @interface FDXMPPTool ()<XMPPStreamDelegate>
 
@@ -142,6 +132,7 @@ singleton_implementation(FDXMPPTool)
 }
 //授权失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error{
+    
     NSLog(@"授权失败%@",error);
 }
 

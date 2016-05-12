@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
 #import "Singleton.h"
-
+/**
+ *  web服务器返回状况
+ */
 @protocol FDLoginDelegate <NSObject>
 
 //登陆成功
@@ -47,4 +49,6 @@ singleton_interface(FDXMPPTool)
 
 //公开一个注册接口
 - (void) userRegist;
+
+
 @end

@@ -89,7 +89,8 @@
     }
     FDUserInfo *user = [FDUserInfo sharedFDUserInfo];
     user.userRegisterName = self.userNameField.text;
-    user.userRegisterPassword = self.userPasswordField.text;
+    #warning 完成 md5 加密
+    user.userRegisterPassword = [self.userPasswordField.text md5Str1];
     user.userRegister = YES;
     //用xmpp巩固的注册方法
     [[FDXMPPTool sharedFDXMPPTool]userRegist];
@@ -104,8 +105,8 @@
     //准备参数
     NSMutableDictionary *parmaters = [NSMutableDictionary dictionary];
     parmaters[@"username"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
-#warning 完成 md5 加密
-    parmaters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userRegisterPassword md5Str1];
+
+    parmaters[@"md5password"] = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
     
     parmaters[@"nickname"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
     //赋值一个性别 1 是男 0 是女

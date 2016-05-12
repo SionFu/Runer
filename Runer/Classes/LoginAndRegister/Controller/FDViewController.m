@@ -10,6 +10,7 @@
 #import "FDUserInfo.h"
 #import "FDXMPPTool.h"
 #import "MBProgressHUD+KR.h"
+#import "NSString+md5.h"
 @interface FDViewController ()<FDLoginDelegate>
 
 /**
@@ -30,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //添加输入框左边的额ico
+    //添加输入框左边的ico
     [self addUserIcon];
     
     }
@@ -60,7 +61,7 @@
      *  把界面深的数据存入单例对象
      */
     [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
-    [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
+    [FDUserInfo sharedFDUserInfo].userpassword = [self.userPasswordField.text md5Str1];
     
     [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
     //使用XMPPFrameWork 连接服务器 完成登陆
@@ -72,6 +73,10 @@
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
     [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎你%@!",[FDUserInfo sharedFDUserInfo].userName]];
+    // 切换到主界面
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"登陆控制器中 获取登陆成功");
 }
 

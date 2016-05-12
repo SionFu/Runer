@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="背景图" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-vg-w7m">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景图" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-vg-w7m">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <animations/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-n5-F9a">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-n5-F9a">
                                 <rect key="frame" x="44" y="132" width="327" height="112"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.5" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景框" translatesAutoresizingMaskIntoConstraints="NO" id="JQ8-fn-7VT">
@@ -76,7 +76,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeZ-Nh-uR6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeZ-Nh-uR6">
                                 <rect key="frame" x="248" y="368" width="60" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -90,7 +90,7 @@
                                     <segue destination="HRI-Zw-y45" kind="show" id="gKV-ik-uby"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6J-FP-lDk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6J-FP-lDk">
                                 <rect key="frame" x="98" y="368" width="60" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -125,8 +125,11 @@
                                     <constraint firstAttribute="width" constant="53" id="K5W-IJ-9ZS"/>
                                 </constraints>
                                 <state key="normal" image="微博" backgroundImage="微博"/>
+                                <connections>
+                                    <segue destination="1Gd-nh-gQa" kind="show" id="KfQ-rJ-PBf"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-dV-0za">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-dV-0za">
                                 <rect key="frame" x="50" y="295" width="314" height="49"/>
                                 <animations/>
                                 <constraints>
@@ -187,6 +190,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgE-td-NqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1129" y="417"/>
+        </scene>
+        <!--新浪登录-->
+        <scene sceneID="dnz-e2-tTr">
+            <objects>
+                <viewController id="dia-iW-m5i" customClass="FDWeiBoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zTC-Yx-ekp"/>
+                        <viewControllerLayoutGuide type="bottom" id="mHT-q9-iLM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="afW-XE-92p">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="In3-Ns-gK2">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="In3-Ns-gK2" firstAttribute="top" secondItem="zTC-Yx-ekp" secondAttribute="bottom" id="3LB-yx-XA0"/>
+                            <constraint firstItem="mHT-q9-iLM" firstAttribute="top" secondItem="In3-Ns-gK2" secondAttribute="bottom" id="Bdt-Mm-L6X"/>
+                            <constraint firstItem="In3-Ns-gK2" firstAttribute="leading" secondItem="afW-XE-92p" secondAttribute="leading" id="Dfe-Ik-fJC"/>
+                            <constraint firstAttribute="trailing" secondItem="In3-Ns-gK2" secondAttribute="trailing" id="nyU-Nq-9Ny"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="新浪登录" id="UIr-cE-ZGa">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="Scf-2l-ng8">
+                            <connections>
+                                <action selector="backBtnClick:" destination="dia-iW-m5i" id="XUT-rZ-wbk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="In3-Ns-gK2" id="Rob-dI-cVz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y3S-dE-7gN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="1361"/>
         </scene>
         <!--快速注册-->
         <scene sceneID="BC0-7f-aGb">
@@ -309,6 +354,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndq-Lz-gwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1759" y="417"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tnq-do-mPC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Gd-nh-gQa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NNX-Bj-XNC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dia-iW-m5i" kind="relationship" relationship="rootViewController" id="3xK-Xc-nFj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N22-PX-6Ps" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1129" y="1361"/>
         </scene>
     </scenes>
     <resources>
