@@ -8,8 +8,9 @@
 
 #import "FDXMPPTool.h"
 #import "FDUserInfo.h"
+#import "AppDelegate.h"
 
-@interface FDXMPPTool ()<XMPPStreamDelegate>
+@interface FDXMPPTool ()<XMPPStreamDelegate,XMPPRosterDelegate,UIActionSheetDelegate>
 
 /**
  *  准备一些数据 设置流
@@ -30,13 +31,34 @@
 
 @end
 @implementation FDXMPPTool
+
+
 singleton_implementation(FDXMPPTool)
+
 /**
  *  准备一些数据 设置流
  */
 - (void)setupXmppStream{
     self.xmppStream = [XMPPStream new];
+    //设置代理
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    //给电子名片模块和对应的存储赋值
+    self.xmppvCardStore = [XMPPvCardCoreDataStorage sharedInstance];
+    self.xmppvCard = [[XMPPvCardTempModule alloc]initWithvCardStorage:self.xmppvCardStore];
+    self.xmppvCardAvatar = [[XMPPvCardAvatarModule alloc]initWithvCardTempModule:self.xmppvCard];
+    //给花名册模块 和对应的存储赋值
+    self.xmppRosterStore = [XMPPRosterCoreDataStorage sharedInstance];
+    self.xmppRoster = [[XMPPRoster alloc]initWithRosterStorage:self.xmppRosterStore];
+    //设置处理好友请求 的机制
+    [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
+    //激活电子名片模块
+    [self.xmppvCard activate:self.xmppStream];
+    //激活头像模块
+    [self.xmppvCardAvatar activate:self.xmppStream];
+    //激活花名册模块
+    [self.xmppRoster activate:self.xmppStream];
+    
 }
 /**
  *  连接服务器
@@ -145,5 +167,28 @@ singleton_implementation(FDXMPPTool)
 - (void)userRegist{
     [self connectToServer];
 }
+//处理添加好友
 
+-(void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence{
+        //请求的用户
+    NSString *presenceFrom = [[presence from]user];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:[NSString stringWithFormat:@"%@好友添加请求",presenceFrom] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"同意" otherButtonTitles:@"同意并添加对方", nil];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    MYLog(@"%@",actionSheet.title);
+    switch (buttonIndex) {
+        case 2:
+            NSLog(@"取消");
+            break;
+        case 0:
+            NSLog(@"添加好友");
+            break;
+        case 1:
+            NSLog(@"同意");
+        default:
+            break;
+    }
+}
 @end

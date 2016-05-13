@@ -61,7 +61,7 @@
 */
 #pragma mark -- KRRegisterDelegate
 - (void)registerNetError{
-    [MBProgressHUD showError:@"网络错误"];
+    [MBProgressHUD showMessage:@"网络错误"];
     NSLog(@"网络错误");
 }
 - (void)registerSuccess{
@@ -69,7 +69,8 @@
     
     NSLog(@"来自代理注册成功");
     [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@!",self.userNameField.text]];
-    
+    NSLog(@"%@",self.parentViewController.presentingViewController);
+    [MBProgressHUD showError:@"test" toView:self.parentViewController.presentingViewController.view];
     [self webRegisterForServer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -90,7 +91,7 @@
     FDUserInfo *user = [FDUserInfo sharedFDUserInfo];
     user.userRegisterName = self.userNameField.text;
     #warning 完成 md5 加密
-    user.userRegisterPassword = [self.userPasswordField.text md5Str1];
+    user.userRegisterPassword = self.userPasswordField.text;
     user.userRegister = YES;
     //用xmpp巩固的注册方法
     [[FDXMPPTool sharedFDXMPPTool]userRegist];
@@ -106,7 +107,7 @@
     NSMutableDictionary *parmaters = [NSMutableDictionary dictionary];
     parmaters[@"username"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
 
-    parmaters[@"md5password"] = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
+    parmaters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userRegisterPassword md5Str1];
     
     parmaters[@"nickname"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
     //赋值一个性别 1 是男 0 是女

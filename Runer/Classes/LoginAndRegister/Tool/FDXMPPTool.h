@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
 #import "Singleton.h"
+
+
 /**
  *  web服务器返回状况
  */
@@ -39,6 +41,17 @@
 singleton_interface(FDXMPPTool)
 @property (nonatomic, weak) id<FDLoginDelegate> loginDelegate;
 @property (nonatomic, weak) id<FDSRegisterDelegate> registerDelegate;
+
+/**
+ *  定义电子名片模块和对应的存储
+ */
+@property (nonatomic, strong) XMPPvCardTempModule *xmppvCard;
+@property (nonatomic,strong)  XMPPvCardCoreDataStorage *xmppvCardStore;
+//增加头像模块  头像模块个电子名片模块需要一起使用
+@property (nonatomic, strong) XMPPvCardAvatarModule *xmppvCardAvatar;
+//增加好友模块 也叫花名册模块
+@property (nonatomic, strong) XMPPRoster *xmppRoster;
+@property (nonatomic, strong) XMPPRosterCoreDataStorage *xmppRosterStore;
 /**
  *  和服务器交互最主要的对象
  */

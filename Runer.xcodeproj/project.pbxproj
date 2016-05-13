@@ -140,6 +140,7 @@
 		851D25741CE1909100CB23C5 /* FDXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25731CE1909100CB23C5 /* FDXMPPTool.m */; };
 		851D25781CE193A600CB23C5 /* FDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 851D25761CE193A600CB23C5 /* FDUserInfo.m */; };
 		857B91E61CE45B1900E647F9 /* FDMyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857B91E51CE45B1900E647F9 /* FDMyProfileViewController.m */; };
+		857B91ED1CE478D800E647F9 /* FDEditMyprofileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857B91EC1CE478D800E647F9 /* FDEditMyprofileViewController.m */; };
 		8586A0221CE2BE7C009B6E87 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */; };
 		8586A0291CE2DD67009B6E87 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0251CE2DD67009B6E87 /* MBProgressHUD+KR.m */; };
 		8586A02A1CE2DD67009B6E87 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8586A0261CE2DD67009B6E87 /* MBProgressHUD.bundle */; };
@@ -155,6 +156,9 @@
 		8586A0511CE30352009B6E87 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0481CE30352009B6E87 /* AFURLSessionManager.m */; };
 		8586A0541CE31A57009B6E87 /* NSString+md5.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0531CE31A57009B6E87 /* NSString+md5.m */; };
 		8586A0571CE3334B009B6E87 /* FDWeiBoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0561CE3334B009B6E87 /* FDWeiBoViewController.m */; };
+		85954AA31CE5AA4C00B52548 /* FDFirendListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954AA21CE5AA4C00B52548 /* FDFirendListTableViewController.m */; };
+		85954AA61CE5AA6100B52548 /* FDFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954AA51CE5AA6100B52548 /* FDFriendTableViewCell.m */; };
+		85954AA91CE5C14900B52548 /* FDAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954AA81CE5C14900B52548 /* FDAddFriendViewController.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -440,6 +444,8 @@
 		851D25771CE193A600CB23C5 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		857B91E41CE45B1900E647F9 /* FDMyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMyProfileViewController.h; sourceTree = "<group>"; };
 		857B91E51CE45B1900E647F9 /* FDMyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMyProfileViewController.m; sourceTree = "<group>"; };
+		857B91EB1CE478D800E647F9 /* FDEditMyprofileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDEditMyprofileViewController.h; sourceTree = "<group>"; };
+		857B91EC1CE478D800E647F9 /* FDEditMyprofileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDEditMyprofileViewController.m; sourceTree = "<group>"; };
 		8586A0201CE2BE7C009B6E87 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
 		8586A0211CE2BE7C009B6E87 /* FDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRegisterViewController.m; sourceTree = "<group>"; };
 		8586A0241CE2DD67009B6E87 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
@@ -470,6 +476,12 @@
 		8586A0531CE31A57009B6E87 /* NSString+md5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+md5.m"; sourceTree = "<group>"; };
 		8586A0551CE3334B009B6E87 /* FDWeiBoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDWeiBoViewController.h; sourceTree = "<group>"; };
 		8586A0561CE3334B009B6E87 /* FDWeiBoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDWeiBoViewController.m; sourceTree = "<group>"; };
+		85954AA11CE5AA4C00B52548 /* FDFirendListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFirendListTableViewController.h; sourceTree = "<group>"; };
+		85954AA21CE5AA4C00B52548 /* FDFirendListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFirendListTableViewController.m; sourceTree = "<group>"; };
+		85954AA41CE5AA6100B52548 /* FDFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFriendTableViewCell.h; sourceTree = "<group>"; };
+		85954AA51CE5AA6100B52548 /* FDFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFriendTableViewCell.m; sourceTree = "<group>"; };
+		85954AA71CE5C14900B52548 /* FDAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDAddFriendViewController.h; sourceTree = "<group>"; };
+		85954AA81CE5C14900B52548 /* FDAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAddFriendViewController.m; sourceTree = "<group>"; };
 		85C98C041CE1B2E7002524C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1297,6 +1309,12 @@
 			children = (
 				857B91E41CE45B1900E647F9 /* FDMyProfileViewController.h */,
 				857B91E51CE45B1900E647F9 /* FDMyProfileViewController.m */,
+				857B91EB1CE478D800E647F9 /* FDEditMyprofileViewController.h */,
+				857B91EC1CE478D800E647F9 /* FDEditMyprofileViewController.m */,
+				85954AA11CE5AA4C00B52548 /* FDFirendListTableViewController.h */,
+				85954AA21CE5AA4C00B52548 /* FDFirendListTableViewController.m */,
+				85954AA71CE5C14900B52548 /* FDAddFriendViewController.h */,
+				85954AA81CE5C14900B52548 /* FDAddFriendViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1337,6 +1355,15 @@
 				8586A0481CE30352009B6E87 /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		85954A9A1CE5A71D00B52548 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85954AA41CE5AA6100B52548 /* FDFriendTableViewCell.h */,
+				85954AA51CE5AA6100B52548 /* FDFriendTableViewCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		85EE28B01CE16CBA00FCAA8F = {
@@ -1450,6 +1477,7 @@
 		85EE28DA1CE16EE400FCAA8F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				85954A9A1CE5A71D00B52548 /* Views */,
 				857B91E31CE45ADF00E647F9 /* Controller */,
 				85EE28C51CE16CBB00FCAA8F /* Main.storyboard */,
 				85EE28C21CE16CBB00FCAA8F /* ViewController.h */,
@@ -1583,6 +1611,7 @@
 				851D254C1CE18DBE00CB23C5 /* XMPPBlocking.m in Sources */,
 				851D253D1CE18DBE00CB23C5 /* XMPPCapabilities.xcdatamodel in Sources */,
 				851D24FC1CE18DBD00CB23C5 /* XMPPModule.m in Sources */,
+				85954AA91CE5C14900B52548 /* FDAddFriendViewController.m in Sources */,
 				8586A04D1CE30352009B6E87 /* AFSecurityPolicy.m in Sources */,
 				851D24F01CE18DBD00CB23C5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				851D25301CE18DBE00CB23C5 /* NSXMLElement+XEP_0059.m in Sources */,
@@ -1642,7 +1671,9 @@
 				851D25581CE18DBE00CB23C5 /* NSXMLElement+XEP_0335.m in Sources */,
 				851D250C1CE18DBD00CB23C5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				851D25571CE18DBE00CB23C5 /* XMPPMessage+XEP_0333.m in Sources */,
+				85954AA61CE5AA6100B52548 /* FDFriendTableViewCell.m in Sources */,
 				851D254B1CE18DBE00CB23C5 /* XMPPMessageDeliveryReceipts.m in Sources */,
+				857B91ED1CE478D800E647F9 /* FDEditMyprofileViewController.m in Sources */,
 				8586A04F1CE30352009B6E87 /* AFURLRequestSerialization.m in Sources */,
 				851D25481CE18DBE00CB23C5 /* XMPPMessage+XEP_0172.m in Sources */,
 				851D251B1CE18DBD00CB23C5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
@@ -1685,6 +1716,7 @@
 				851D253F1CE18DBE00CB23C5 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				851D25061CE18DBD00CB23C5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				851D25111CE18DBD00CB23C5 /* XMPPJabberRPCModule.m in Sources */,
+				85954AA31CE5AA4C00B52548 /* FDFirendListTableViewController.m in Sources */,
 				851D25451CE18DBE00CB23C5 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				851D255A1CE18DBE00CB23C5 /* GCDMulticastDelegate.m in Sources */,
 				851D25621CE18DBE00CB23C5 /* DDFileLogger.m in Sources */,

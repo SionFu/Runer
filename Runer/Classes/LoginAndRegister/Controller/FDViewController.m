@@ -10,7 +10,6 @@
 #import "FDUserInfo.h"
 #import "FDXMPPTool.h"
 #import "MBProgressHUD+KR.h"
-#import "NSString+md5.h"
 @interface FDViewController ()<FDLoginDelegate>
 
 /**
@@ -61,7 +60,7 @@
      *  把界面深的数据存入单例对象
      */
     [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
-    [FDUserInfo sharedFDUserInfo].userpassword = [self.userPasswordField.text md5Str1];
+    [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
     
     [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
     //使用XMPPFrameWork 连接服务器 完成登陆

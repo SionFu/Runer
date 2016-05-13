@@ -7,8 +7,14 @@
 //
 
 #import "FDMyProfileViewController.h"
-
+#import "FDXMPPTool.h"
+#import "FDUserInfo.h"
+#import "XMPPvCardTemp.h"
 @interface FDMyProfileViewController ()
+- (IBAction)backBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNiceName;
 
 @end
 
@@ -16,9 +22,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
 }
 
+//每次到这个界面会更新信息
+- (void)viewWillAppear:(BOOL)animated{
+     //获取个人信息
+    XMPPvCardTemp *vCardTemp = [FDXMPPTool sharedFDXMPPTool].xmppvCard.myvCardTemp;
+    if (vCardTemp.photo) {
+        self.headImageView.image = [UIImage imageWithData:vCardTemp.photo];
+    }else{
+        self.headImageView.image = [UIImage imageNamed:@"瓦力"];
+    }
+    self.userNiceName.text = [NSString stringWithFormat:@"昵称:%@",[FDUserInfo sharedFDUserInfo].userName];
+    self.userNameLabel.text = [NSString stringWithFormat:@"用户名:%@",vCardTemp.nickname];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -34,4 +53,7 @@
 }
 */
 
+- (IBAction)backBtnClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

@@ -65,10 +65,7 @@
         [FDUserInfo sharedFDUserInfo].userRegister = YES;
         [FDUserInfo sharedFDUserInfo].userRegisterName = responseObject[@"uid"];
         [FDUserInfo sharedFDUserInfo].userRegisterPassword = responseObject[@"access_token"];
-        
         [[FDXMPPTool sharedFDXMPPTool] userRegist];
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -91,16 +88,19 @@
     [self webRegisterForServer];
     
 }
-
-- (void)registerFaild{
+- (void)login{
     //尝试自动登录 应为已经可能注册过了
     // 尝试自动登录 因为可能已经注册过
     [FDUserInfo sharedFDUserInfo].userRegister = NO;
-    [FDUserInfo sharedFDUserInfo].userRegisterName = [FDUserInfo sharedFDUserInfo].userRegisterName;
-    [FDUserInfo sharedFDUserInfo].userName = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
-    
+    [FDUserInfo sharedFDUserInfo].userName = [FDUserInfo sharedFDUserInfo].userRegisterName;
+    [FDUserInfo sharedFDUserInfo].userpassword = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
+    [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
     [[FDXMPPTool sharedFDXMPPTool]userLogin];
+     [self loginSuccess];
 }
+- (void)registerFaild{
+    [self login];
+    }
 - (void)registerNetError{
     
 }
@@ -135,11 +135,8 @@
         //请求成功
         NSLog(@"weibo 授权成功:%@",responseObject);
         //web注册成功 应该自动登录
-        [FDUserInfo sharedFDUserInfo].userRegister = YES;
-        [FDUserInfo sharedFDUserInfo].userName = [FDUserInfo sharedFDUserInfo].userRegisterName;
-        [FDUserInfo sharedFDUserInfo].userpassword = [FDUserInfo sharedFDUserInfo].userRegisterPassword;
-        [[FDXMPPTool sharedFDXMPPTool]userRegist];
-        [self loginSuccess];
+        [self login];
+       
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //请求失败
         NSLog(@"%@",error.userInfo);

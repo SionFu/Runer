@@ -23,7 +23,10 @@
 //  The following is standard:
 
 #import "XMPP.h"
- 
+//打开名片功能
+#import "XMPPvCardTempModule.h"
+#import "XMPPvCardCoreDataStorage.h"
+#import "XMPPvCardAvatarModule.h"
 // List the modules you're using here:
 // (the following may not be a complete list)
 
@@ -32,10 +35,10 @@
 //#import "XMPPCoreDataStorage.h"
 //
 //#import "XMPPReconnect.h"
-//
-//#import "XMPPRoster.h"
+//好友聊天
+#import "XMPPRoster.h"
 //#import "XMPPRosterMemoryStorage.h"
-//#import "XMPPRosterCoreDataStorage.h"
+#import "XMPPRosterCoreDataStorage.h"
 //
 //#import "XMPPJabberRPCModule.h"
 //#import "XMPPIQ+JabberRPC.h"

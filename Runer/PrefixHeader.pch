@@ -9,14 +9,21 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 //主机名
-#define FDXMPPPHOSTNAME @"127.0.0.1"
+#define FDXMPPPHOSTNAME @"172.60.21.68"
 //端口号
 #define FDXMPPPORT 5222
 //域名
 #define FDXMPPDOMAIN @"tedu.cn"
+//控制程序的输出 只要把NSLog 换成MYLog
+#ifdef DEBUG
+    #define MYLog(...) NSLog(__VA_ARGS__)
+#else
+    #define MYLog(...)
+#endif
+
 
 //网络注册 对应的url
-#define WEBREGISTER_URL @"http://127.0.0.1:8080/allRunServer/register.jsp"
+#define WEBREGISTER_URL @"http://172.60.21.68:8080/allRunServer/register.jsp"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.
