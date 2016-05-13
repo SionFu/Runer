@@ -168,6 +168,7 @@
         <!--好友列表-->
         <scene sceneID="PSm-rQ-SMD">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGx-B2-KsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Mo4-X7-VCl" customClass="FDAddFriendViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hqj-FN-nWO"/>
@@ -213,7 +214,7 @@
                     <navigationItem key="navigationItem" title="好友列表" id="X9X-PQ-P7g">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="bLW-iZ-PcL">
                             <connections>
-                                <action selector="backBtnClick:" destination="Mo4-X7-VCl" id="mcg-CS-8Q4"/>
+                                <action selector="backBtnClick:" destination="Mo4-X7-VCl" id="c0g-Sn-xhw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -222,7 +223,6 @@
                         <outlet property="friendTextField" destination="UK9-WI-UU9" id="Rdx-4B-TsP"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eGx-B2-KsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2643" y="551"/>
         </scene>

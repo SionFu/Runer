@@ -28,7 +28,10 @@
  *  发送在线消息
  */
 - (void) sendOnline;
-
+/**
+ *  申请添加好友的id
+ */
+@property (strong,nonatomic) XMPPJID *fJid;
 @end
 @implementation FDXMPPTool
 
@@ -173,22 +176,37 @@ singleton_implementation(FDXMPPTool)
         //请求的用户
     NSString *presenceFrom = [[presence from]user];
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:[NSString stringWithFormat:@"%@好友添加请求",presenceFrom] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"同意" otherButtonTitles:@"同意并添加对方", nil];
+    NSString *jidStr = [NSString stringWithFormat:@"%@@%@",presenceFrom,FDXMPPDOMAIN];
+    XMPPJID *jid = [XMPPJID jidWithString:jidStr];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    MYLog(@"%@",actionSheet.title);
-    switch (buttonIndex) {
-        case 2:
-            NSLog(@"取消");
-            break;
-        case 0:
-            NSLog(@"添加好友");
-            break;
-        case 1:
-            NSLog(@"同意");
-        default:
-            break;
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"index====%ld",buttonIndex);
+    if (0 == buttonIndex) {
+        [self.xmppRoster acceptPresenceSubscriptionRequestFrom:self.fJid andAddToRoster:NO];
+    }else if(1== buttonIndex){
+        [self.xmppRoster acceptPresenceSubscriptionRequestFrom:self.fJid andAddToRoster:YES];
+    }else{
+        [self.xmppRoster  rejectPresenceSubscriptionRequestFrom:self.fJid];
     }
+    
+}
+
+-(void)addFriendWith:(NSString *)friendNage{
+    //服务器内取得已有的好友
+    NSString *jidStr = [NSString stringWithFormat:@"%@@%@",friendNage,FDXMPPDOMAIN];
+    if ([[FDXMPPTool sharedFDXMPPTool].xmppRosterStore userExistsWithJID:[XMPPJID jidWithString:jidStr] xmppStream:[FDXMPPTool sharedFDXMPPTool].xmppStream]) {
+        [MBProgressHUD showError:@"已经添加过好友"];
+        return;
+    }
+    if (friendNage.length == 0) {
+        [MBProgressHUD showError:@"请输入要添加的好友名"];
+        return;
+    }
+    //添加好友
+    [[FDXMPPTool sharedFDXMPPTool].xmppRoster subscribePresenceToUser:[XMPPJID jidWithString:jidStr]];
 }
 @end

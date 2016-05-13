@@ -50,11 +50,11 @@
     }
     //添加好友
     [[FDXMPPTool sharedFDXMPPTool].xmppRoster subscribePresenceToUser:[XMPPJID jidWithString:jidStr]];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)backBtnClick:(id)sender {
-    [self.navigationController popoverPresentationController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

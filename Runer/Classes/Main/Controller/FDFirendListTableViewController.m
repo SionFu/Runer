@@ -63,7 +63,7 @@
     //4.设置排序
     NSSortDescriptor *sortDes = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
     request.sortDescriptors = @[sortDes];
-    //5.获取数据
+    //5.获取数据   用数据集获取到数据
     NSError *error = nil;
     self.fetchedResultsController  = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;

@@ -9,7 +9,8 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 //主机名
-#define FDXMPPPHOSTNAME @"172.60.21.68"
+//#define FDXMPPPHOSTNAME @"172.60.21.68"
+#define FDXMPPPHOSTNAME @"127.0.0.1"
 //端口号
 #define FDXMPPPORT 5222
 //域名
@@ -23,7 +24,7 @@
 
 
 //网络注册 对应的url
-#define WEBREGISTER_URL @"http://172.60.21.68:8080/allRunServer/register.jsp"
+#define WEBREGISTER_URL @"http://127.0.0.1:8080/allRunServer/register.jsp"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.
