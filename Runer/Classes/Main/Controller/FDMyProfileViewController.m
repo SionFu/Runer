@@ -34,8 +34,8 @@
     }else{
         self.headImageView.image = [UIImage imageNamed:@"瓦力"];
     }
-    self.userNiceName.text = [NSString stringWithFormat:@"昵称:%@",[FDUserInfo sharedFDUserInfo].userName];
-    self.userNameLabel.text = [NSString stringWithFormat:@"用户名:%@",vCardTemp.nickname];
+    self.userNiceName.text = [NSString stringWithFormat:@"昵称:%@",vCardTemp.nickname];
+    self.userNameLabel.text = [NSString stringWithFormat:@"用户名:%@",[FDUserInfo sharedFDUserInfo].userName];
 
 }
 - (void)didReceiveMemoryWarning {

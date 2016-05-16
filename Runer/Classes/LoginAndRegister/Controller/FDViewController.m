@@ -85,7 +85,7 @@
 }
 
 - (void)loginNetError{
-    [MBProgressHUD showMessage:@"网络错误"];
+    [MBProgressHUD showError:@"网络错误"];
     NSLog(@"登陆控制器中 获取登陆状态 网络失败");
 }
 @end

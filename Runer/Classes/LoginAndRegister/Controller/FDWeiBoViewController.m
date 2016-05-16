@@ -30,8 +30,8 @@
     NSString *url = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@",APPKEY,REDIRECTURL];
     NSURL *loadURl = [NSURL URLWithString:url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:loadURl]];
-    [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
-    [FDXMPPTool sharedFDXMPPTool].registerDelegate = self;
+//    [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
+//    [FDXMPPTool sharedFDXMPPTool].registerDelegate = self;
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSLog(@"%@",request.URL);

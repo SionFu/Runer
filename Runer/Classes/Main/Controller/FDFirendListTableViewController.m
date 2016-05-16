@@ -10,6 +10,7 @@
 #import "FDXMPPTool.h"
 #import "FDUserInfo.h"
 #import "FDFriendTableViewCell.h"
+#import "FDMessageViewController.h"
 @interface FDFirendListTableViewController ()<NSFetchedResultsControllerDelegate>
 - (IBAction)backBtnClick:(id)sender;
 //存放好友列表
@@ -143,10 +144,22 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //获取对应这一行的好友信息
+    XMPPUserCoreDataStorageObject *friend = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    [self performSegueWithIdentifier:@"chatSegue" sender:friend.jid];
+}
 
-
-
-
+//让聊天视图接受 好友的jid
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id destVC = segue.destinationViewController;
+    //判断是否为这个控制器
+    if ([destVC isKindOfClass:[FDMessageViewController class]]) {
+        FDMessageViewController *messageVC = (FDMessageViewController *)destVC;
+        messageVC.friendJid = sender;
+    }
+ 
+}
 
 
 
