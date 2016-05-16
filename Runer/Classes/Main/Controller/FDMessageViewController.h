@@ -10,4 +10,5 @@
 #import "XMPPJID.h"
 @interface FDMessageViewController : UIViewController
 @property (nonatomic, strong) XMPPJID *friendJid;
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 @end

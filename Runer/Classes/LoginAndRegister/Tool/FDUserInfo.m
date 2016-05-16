@@ -10,4 +10,7 @@
 
 @implementation FDUserInfo
 singleton_implementation(FDUserInfo)
+-(NSString *)jidStr{
+    return [NSString stringWithFormat:@"%@@%@",self.userName,FDXMPPDOMAIN];
+}
 @end

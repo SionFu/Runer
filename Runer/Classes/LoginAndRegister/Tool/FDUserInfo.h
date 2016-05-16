@@ -32,4 +32,8 @@ singleton_interface(FDUserInfo)
  *  用来区分登录还是注册
  */
 @property (nonatomic, assign, getter=isUserRegister) BOOL userRegister;
+/**
+ *  获取当前用户对应的用户的idStr
+ */
+@property (nonatomic, copy, readonly) NSString  *jidStr;
 @end

@@ -160,6 +160,8 @@
 		85954AA61CE5AA6100B52548 /* FDFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954AA51CE5AA6100B52548 /* FDFriendTableViewCell.m */; };
 		85954AA91CE5C14900B52548 /* FDAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954AA81CE5C14900B52548 /* FDAddFriendViewController.m */; };
 		85A5D1031CE96A7500EDEA35 /* FDFriendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A5D1021CE96A7500EDEA35 /* FDFriendInfoViewController.m */; };
+		85A5D1091CE9B7B800EDEA35 /* FDMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A5D1081CE9B7B800EDEA35 /* FDMeTableViewCell.m */; };
+		85A5D10C1CE9D26300EDEA35 /* FDOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A5D10B1CE9D26300EDEA35 /* FDOtherTableViewCell.m */; };
 		85DE0ED81CE6E84B00ABC012 /* FDMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DE0ED71CE6E84B00ABC012 /* FDMessageViewController.m */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
@@ -486,6 +488,10 @@
 		85954AA81CE5C14900B52548 /* FDAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDAddFriendViewController.m; sourceTree = "<group>"; };
 		85A5D1011CE96A7500EDEA35 /* FDFriendInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFriendInfoViewController.h; sourceTree = "<group>"; };
 		85A5D1021CE96A7500EDEA35 /* FDFriendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFriendInfoViewController.m; sourceTree = "<group>"; };
+		85A5D1071CE9B7B800EDEA35 /* FDMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMeTableViewCell.h; sourceTree = "<group>"; };
+		85A5D1081CE9B7B800EDEA35 /* FDMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMeTableViewCell.m; sourceTree = "<group>"; };
+		85A5D10A1CE9D26300EDEA35 /* FDOtherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDOtherTableViewCell.h; sourceTree = "<group>"; };
+		85A5D10B1CE9D26300EDEA35 /* FDOtherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDOtherTableViewCell.m; sourceTree = "<group>"; };
 		85C98C041CE1B2E7002524C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		85DE0ED61CE6E84B00ABC012 /* FDMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMessageViewController.h; sourceTree = "<group>"; };
 		85DE0ED71CE6E84B00ABC012 /* FDMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMessageViewController.m; sourceTree = "<group>"; };
@@ -1372,6 +1378,10 @@
 			children = (
 				85954AA41CE5AA6100B52548 /* FDFriendTableViewCell.h */,
 				85954AA51CE5AA6100B52548 /* FDFriendTableViewCell.m */,
+				85A5D1071CE9B7B800EDEA35 /* FDMeTableViewCell.h */,
+				85A5D1081CE9B7B800EDEA35 /* FDMeTableViewCell.m */,
+				85A5D10A1CE9D26300EDEA35 /* FDOtherTableViewCell.h */,
+				85A5D10B1CE9D26300EDEA35 /* FDOtherTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1671,8 +1681,10 @@
 				851D24F11CE18DBD00CB23C5 /* XMPPDigestMD5Authentication.m in Sources */,
 				851D25071CE18DBD00CB23C5 /* XMPPRoster.xcdatamodel in Sources */,
 				851D25211CE18DBD00CB23C5 /* XMPPMUC.m in Sources */,
+				85A5D10C1CE9D26300EDEA35 /* FDOtherTableViewCell.m in Sources */,
 				851D252F1CE18DBE00CB23C5 /* XMPPvCardTempTel.m in Sources */,
 				851D254E1CE18DBE00CB23C5 /* XMPPPing.m in Sources */,
+				85A5D1091CE9B7B800EDEA35 /* FDMeTableViewCell.m in Sources */,
 				851D25551CE18DBE00CB23C5 /* NSXMLElement+XEP_0297.m in Sources */,
 				851D25661CE18DBE00CB23C5 /* DispatchQueueLogFormatter.m in Sources */,
 				851D254D1CE18DBE00CB23C5 /* XMPPAutoPing.m in Sources */,

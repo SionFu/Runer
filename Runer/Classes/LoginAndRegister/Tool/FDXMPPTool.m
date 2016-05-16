@@ -52,6 +52,11 @@ singleton_implementation(FDXMPPTool)
     //给花名册模块 和对应的存储赋值
     self.xmppRosterStore = [XMPPRosterCoreDataStorage sharedInstance];
     self.xmppRoster = [[XMPPRoster alloc]initWithRosterStorage:self.xmppRosterStore];
+    
+    //消息模块
+    self.xmppMessageArchivingStore = [XMPPMessageArchivingCoreDataStorage sharedInstance];
+    self.xmppMessageArchiving = [[XMPPMessageArchiving alloc]initWithMessageArchivingStorage:self.xmppMessageArchivingStore];
+    
     //设置处理好友请求 的机制
     [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
@@ -62,6 +67,8 @@ singleton_implementation(FDXMPPTool)
     //激活花名册模块
     [self.xmppRoster activate:self.xmppStream];
     
+    //激活消息模块
+    [self.xmppMessageArchiving activate:self.xmppStream];
 }
 /**
  *  连接服务器

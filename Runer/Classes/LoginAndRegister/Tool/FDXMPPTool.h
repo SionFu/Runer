@@ -52,6 +52,9 @@ singleton_interface(FDXMPPTool)
 //增加好友模块 也叫花名册模块
 @property (nonatomic, strong) XMPPRoster *xmppRoster;
 @property (nonatomic, strong) XMPPRosterCoreDataStorage *xmppRosterStore;
+
+@property (nonatomic, strong) XMPPMessageArchiving *xmppMessageArchiving;
+@property (nonatomic, strong) XMPPMessageArchivingCoreDataStorage *xmppMessageArchivingStore;
 /**
  *  和服务器交互最主要的对象
  */
