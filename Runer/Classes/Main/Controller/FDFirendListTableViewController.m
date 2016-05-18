@@ -105,7 +105,10 @@
     //获取头像信息
     
     NSData *data = [[FDXMPPTool sharedFDXMPPTool].xmppvCardAvatar photoDataForJID:friend.jid];
+    //设置为圆形头像
+    [cell.friendHeadiamgeView setRoundlay];
     if (data) {
+        
         cell.friendHeadiamgeView.image = [UIImage imageWithData:data];
     }else{
         cell.friendHeadiamgeView.image = [UIImage imageNamed:@"瓦力"];

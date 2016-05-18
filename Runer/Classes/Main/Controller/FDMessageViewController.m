@@ -13,7 +13,12 @@
 #import "FDMeTableViewCell.h"
 #import "FDOtherTableViewCell.h"
 #import "XMPPvCardTemp.h"
-@interface FDMessageViewController ()<NSFetchedResultsControllerDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "FDFriendInfoViewController.h"
+@interface FDMessageViewController ()<NSFetchedResultsControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *msgLabel;
+- (IBAction)friendInfoBtnClick:(id)sender;
+
+- (IBAction)iamgeBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomTextView;
 @property (weak, nonatomic) IBOutlet UITextField *inputTield;
@@ -28,16 +33,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 50)];
+    self.inputTield.leftViewMode = UITextFieldViewModeAlways;
+    self.inputTield.leftView = imageView;
     //行高自适应====必须要给这两行
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     //预估值
     self.tableView.estimatedRowHeight = 80;
-    
+    [self.msgLabel becomeFirstResponder];
     
     [self loadMesage];
 }
-//使table滚动到最后
+#pragma mark  -- 使table滚动到最后
 -(void)scrollerTOTableViewLastRow{
     if (self.fetchedResultsController.fetchedObjects.count == 0) {
         return;
@@ -54,20 +61,19 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(closeKeyboard:) name:UIKeyboardWillHideNotification object:nil];
     self.title = self.friendJid.user;
-    
-     [self scrollerTOTableViewLastRow];
+    //聊天内容滚动到最后一行
+    [self scrollerTOTableViewLastRow];
+
 }
 //键盘弹出
 - (void)showKeyboard:(NSNotification *)notification{
 
-        NSTimeInterval duration = [notification.userInfo[UIKeyboardWillHideNotification]doubleValue];
+        NSTimeInterval duration = [notification.userInfo[UIKeyboardDidHideNotification]doubleValue];
         NSInteger option = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey]integerValue];
         CGRect rect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
         CGFloat height = rect.size.height;
         self.buttomTextView.constant = height;
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 50)];
-        self.inputTield.leftViewMode = UITextFieldViewModeAlways;
-        self.inputTield.leftView = imageView;
+        [self.tableView layoutIfNeeded];
     
 //    [UIView animateKeyframesWithDuration:duration delay:0 options:option animations:^{
 //        [self.view layoutIfNeeded];
@@ -77,6 +83,7 @@
     //第二种动画模式
    [UIView animateWithDuration:duration delay:0 options:option animations:^{
        [self.view layoutIfNeeded];
+       
        [self scrollerTOTableViewLastRow];//表格向上移动
    } completion:nil];
 }
@@ -90,7 +97,9 @@
     self.buttomTextView.constant = 0;
     [UIView animateKeyframesWithDuration:duration delay:0 options:option animations:^{
         [self.view layoutIfNeeded];
+       
     } completion:nil];
+    [self scrollerTOTableViewLastRow];//表格向上移动
 }
 #pragma mark  -- 加载消息
 - (void)loadMesage{
@@ -142,8 +151,10 @@
     //组装一个消息
     XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:self.friendJid];
     //组装消息
-    [msg addBody:msgStr];
+    [msg addBody:[NSString stringWithFormat:@"text:%@",msgStr]];
     [[FDXMPPTool sharedFDXMPPTool].xmppStream sendElement:msg];
+    
+   
 }
 
 #pragma mark -- tabledelegate dataDelegate
@@ -156,24 +167,102 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //获取信息对象
     XMPPMessageArchiving_Message_CoreDataObject *msageObj = self.fetchedResultsController.fetchedObjects[indexPath.row];
+    
+   
+   
     if (msageObj.isOutgoing) {
         FDMeTableViewCell *meCell = [tableView dequeueReusableCellWithIdentifier:@"meCell"];
-        meCell.msgLabel.text = msageObj.body;
+        //方法一
+//        if ([[meCell.msgLabel.subviews lastObject]isKindOfClass:[UIImageView class]]) {
+//            [[meCell.msgLabel.subviews lastObject]removeFromSuperview];
+//        }
+        /**
+         *  方法二
+         */
+        [[meCell.msgLabel viewWithTag:100]removeFromSuperview];
+        
+        //移除复用组件 方法三
+//        meCell.msgLabel.attributedText = nil;
+//        for (id obj in meCell.msgLabel.subviews) {
+//            [obj removeFromSuperview];
+//        }
+        if ([msageObj.body hasPrefix:@"text:"]) {
+            meCell.msgLabel.text = [msageObj.body substringFromIndex:5];
+        }else if ([msageObj.body hasPrefix:@"image:"]){
+            NSString *base64 = [msageObj.body substringFromIndex:6];
+            //把base64 转换 成data
+            NSData *imageData = [[NSData alloc]initWithBase64EncodedString:base64 options:0];
+            //使用uilabel 富文本
+            NSTextAttachment *attachment = [NSTextAttachment new];
+            attachment.bounds = CGRectMake(0, 0, 110, 110);
+            //副文本
+            NSAttributedString *attributedStr = [NSAttributedString attributedStringWithAttachment:attachment];
+            meCell.msgLabel.attributedText = attributedStr;
+            //构建一个uiimageView
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithData:imageData]];
+            [meCell.msgLabel addSubview:imageView];
+            imageView.tag = 100;
+        }
+        else{
+            //兼容以前的消息
+            meCell.msgLabel.text = msageObj.body;
+        }
+        
         NSData *data = [FDXMPPTool sharedFDXMPPTool].xmppvCard.myvCardTemp.photo;
         if (data) {
+            //设置为圆形头像
+            [meCell.headImageView setRoundlay];
             meCell.headImageView.image = [UIImage imageWithData:data];
         }else{
             meCell.imageView.image = [UIImage imageNamed:@"瓦力"];
         }
         meCell.msgTimeLabel.text = @"2016-06-01";
+        meCell.userNageLabel.text = [FDUserInfo sharedFDUserInfo].userName;
         return meCell;
-    }else{
+    }
+    
+    else
+    
+    {
         FDOtherTableViewCell *otherCell = [tableView dequeueReusableCellWithIdentifier:@"otherCell"];
         
-    otherCell.magLabel.text = msageObj.body;
-    otherCell.timeTextLabel.text = @"2015.02.01";
-    otherCell.userNameLabel.text = @"sf";
-    return otherCell;
+        //消除表格的重用
+        [[otherCell.magLabel viewWithTag:120]removeFromSuperview];
+        
+        //显示消息文本内容 包括头像和文本
+        if ([msageObj.body hasPrefix:@"text:"]) {
+            otherCell.magLabel.text = [msageObj.body substringFromIndex:5];
+        }else if ([msageObj.body hasPrefix:@"image:"]){
+            NSString *base64 = [msageObj.body substringFromIndex:6];
+            //把base64 转换 成data
+            NSData *imageData = [[NSData alloc]initWithBase64EncodedString:base64 options:0];
+            //使用uilabel 富文本
+            NSTextAttachment *attachment = [NSTextAttachment new];
+            attachment.bounds = CGRectMake(0, 0, 110, 110);
+            //副文本
+            NSAttributedString *attributedStr = [NSAttributedString attributedStringWithAttachment:attachment];
+            otherCell.magLabel.attributedText = attributedStr;
+            //构建一个uiimageView
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithData:imageData]];
+            imageView.tag = 120;
+            [otherCell.magLabel addSubview:imageView];
+        }
+        //显示头像
+        NSData *photo = [[FDXMPPTool sharedFDXMPPTool].xmppvCardAvatar photoDataForJID:msageObj.bareJid];
+        if (photo) {
+            otherCell.userImageView.image = [UIImage imageWithData:photo];
+        }else{
+            otherCell.userImageView.image = [UIImage imageNamed:@"瓦力"];
+        }
+        
+        NSDateFormatter *dateformater = [NSDateFormatter new];
+        dateformater.dateFormat = @"MM-DD-YY hh:mm-ss";
+        //显示时间
+        otherCell.timeTextLabel.text = [dateformater stringFromDate: msageObj.timestamp];
+        NSRange range = [msageObj.bareJidStr rangeOfString:@"@"];
+        //显示用户名
+        otherCell.userNameLabel.text = [msageObj.bareJidStr substringToIndex:range.location];
+        return otherCell;
     }
 }
 
@@ -183,17 +272,62 @@
 //结果集
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
     [self.tableView reloadData];
-    [self scrollerTOTableViewLastRow];
+      [self.msgLabel becomeFirstResponder];
+     [self scrollerTOTableViewLastRow];//表格向上移动
 }
 
 
 
 
+//选择发送的照片
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    NSLog(@"%@",info);
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImage *newImage = [self thumbaiWithImage:image size:CGSizeMake(100, 100)];
+    NSData *sendData = UIImageJPEGRepresentation(newImage ,0.2);
+    [self sendImageMsg:sendData];
+    NSLog(@"%ld",sendData.length);
+    NSLog(@"%ld M ",UIImagePNGRepresentation(newImage).length);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
+//压缩图片
+- (UIImage *) thumbaiWithImage:(UIImage *)image size:(CGSize)size {
+    UIImage *newImage = nil;
+    if (image) {
+        UIGraphicsBeginImageContext(size);
+        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+    }
+    return newImage;
+    
+}
+//把二进制变成base64 格式
+- (void )sendImageMsg:(NSData *)data{
+    NSString *base64Str = [data base64EncodedStringWithOptions:0];
+    XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:self.friendJid];
+    [msg addBody:[NSString stringWithFormat:@"image:%@",base64Str]];
+    [[FDXMPPTool sharedFDXMPPTool].xmppStream sendElement:msg];
+    
+}
+- (IBAction)friendInfoBtnClick:(id)sender {
+    
+    FDFriendInfoViewController *vc = [FDFriendInfoViewController new];
+    vc.friendJid = self.friendJid;
+    
+    
+    
+} 
 
-
-
-
-
-
+- (IBAction)iamgeBtnClick:(id)sender {
+    UIImagePickerController *pick = [UIImagePickerController new];
+    pick.delegate = self;
+    pick.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    pick.editing = YES;
+    [self presentViewController:pick animated:YES completion:nil];
+    
+}
 @end

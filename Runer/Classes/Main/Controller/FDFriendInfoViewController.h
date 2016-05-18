@@ -10,4 +10,5 @@
 #import "XMPPJID.h"
 @interface FDFriendInfoViewController : UIViewController
 @property (nonatomic, strong) XMPPJID *friendJid;
+
 @end

@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *friendImageView;
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendNickNameLabel;
-@property (nonatomic, strong) NSArray *friends;
+
 @end
 
 @implementation FDFriendInfoViewController
@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self loadFiends];
 }
 - (void)loadFiends{
     //1.获取上下文
@@ -39,12 +40,12 @@
     request.sortDescriptors = @[sortDes];
     //5.获取数据
    
-    NSError *error = nil;
-        self.friends = [context executeFetchRequest:request error:&error];
-    if (error) {
-        MYLog(@"%@",error);
-    }
+
     
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    self.friendNameLabel.text = self.friendJid.user;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
