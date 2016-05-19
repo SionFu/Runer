@@ -13,6 +13,25 @@ typedef enum {
     TrailEnd
 }Trail;
 @interface FDSportViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
+
+ //////跑步完成
+/**
+ *分享到sina微博
+ */
+- (IBAction)sharedToSInaWeiBo:(id)sender;
+/**
+ *  分享到酷跑
+ */
+- (IBAction)sharedToRuner:(id)sender;
+/**
+ *  保存按钮
+ */
+- (IBAction)saveBtnClick:(id)sender;
+/**
+ *  取消保存按钮
+ */
+- (IBAction)cancelBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *completetSportView;
 /**
  *  完成按钮被点击
  */
@@ -89,6 +108,9 @@ typedef enum {
     UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(pauseSport)];
     gesture.direction = UISwipeGestureRecognizerDirectionDown;
     [self.stopRunBtn addGestureRecognizer:gesture];
+    
+    //启动的时候 分享视图是隐藏的
+    self.completetSportView.hidden = YES;
     
 }
 
@@ -239,8 +261,78 @@ typedef enum {
 }
 
 - (IBAction)completeBtnClick:(id)sender {
+    //先把暂停视图隐藏
+    self.pauseSportView.hidden = YES;
+    //设置终点大头针
+    self.endPoint = [self createPointWithLocation:[self.lotationArray lastObject] title:@"终点"];
+    //把所有的点显示在屏幕范围内
+    
+    [self fitMapViewForPolyLine:self.pokyline];
+    
+    self.completetSportView.hidden = NO;
 }
 
 - (IBAction)continueBtnClick:(id)sender {
+    self.stopRunBtn.hidden = YES;
+    self.pauseSportView.hidden = YES;
+    self.stopRunBtn.hidden = NO;
+    [self.location startUserLocationService];
+}
+#pragma mark -- 把所有的点显示在屏幕上
+- (void) fitMapViewForPolyLine:(BMKPolyline*)polyline{
+    CGFloat ltX,ltY,maxX,MaxY;
+    if (polyline.pointCount < 2) {
+        return;
+    }
+    BMKMapPoint pt = polyline.points[0];
+    ltX = pt.x, ltY = pt.y;
+    maxX = pt.x,MaxY = pt.y;
+    for (int i = 0; i <polyline.pointCount; i ++) {
+        BMKMapPoint innerPt = polyline.points[i];
+        if (innerPt.x <ltX) {
+            ltX = innerPt.x;
+        }
+        if (innerPt.y <ltY) {
+            ltY = innerPt.y;
+        }
+        if (innerPt.x > maxX) {
+            maxX = innerPt.x;
+        }
+        if (innerPt.y > MaxY) {
+            MaxY = innerPt.y;
+        }
+    }
+    //根据大小 构建一个矩形
+    BMKMapRect rect;
+    rect.origin = BMKMapPointMake(ltX - 40, ltY - 60);
+    rect.size = BMKMapSizeMake(maxX - ltX + 80, maxX - ltY + 120);
+    [self.mapView setVisibleMapRect:rect];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- (IBAction)sharedToRuner:(id)sender {
+}
+
+- (IBAction)saveBtnClick:(id)sender {
+}
+
+- (IBAction)cancelBtnClick:(id)sender {
+    [super viewDidLoad];
+    self.completetSportView.hidden = YES;
+    
+}
+- (IBAction)sharedToSInaWeiBo:(id)sender {
 }
 @end
