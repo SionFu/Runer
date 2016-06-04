@@ -8,6 +8,11 @@
 
 #import "FDSportViewController.h"
 #import "BMapKit.h"
+#import "FDUserInfo.h"
+#import "NSString+md5.h"
+#import "AFNetworking.h"
+#import "AFNetworkReachabilityManager.h"
+#import "MBProgressHUD+KR.h"
 typedef enum {
     TrailStare = 1,
     TrailEnd
@@ -52,6 +57,24 @@ typedef enum {
  * 开始按钮被点击
  */
 - (IBAction)startBtnClick:(id)sender;
+
+/**
+ *  运动总距离
+ */
+@property (nonatomic, assign) int sumDistance;
+/**
+ *  运动总时间
+ */
+@property (nonatomic, assign)  double sumSportTimeLen;
+
+/**
+ *  运动总热量
+ */
+@property (nonatomic, assign) double sumSportHear;
+/**
+ *  运动开始时间
+ */
+@property (nonatomic, assign) double sumSportTime;
 @property BMKMapView *mapView;
 /**
  *  暂停按钮的视图
@@ -80,10 +103,7 @@ typedef enum {
  *  记录用户上一个位置
  */
 @property (nonatomic, strong) CLLocation *preLocation;
-/**
- *  运动的总距离 实时
- */
-@property (nonatomic, assign) double sumDistance;
+
 @end
 //一个扇区所跨的经纬度
 #define BMKSPAN 0.002//20米
@@ -215,6 +235,8 @@ typedef enum {
     //绘制用户路径
     [self drawWalkLine];
 }
+
+//划线
 -(void)drawWalkLine{
     NSInteger count = self.lotationArray.count;
     //需要把数组中的位置转化成BMKPoint
@@ -228,6 +250,11 @@ typedef enum {
     if (self.pokyline) {
         [self.mapView addOverlay:self.pokyline];
     }free(tempPoint);//结构体 不是oc语言 需要手动释放
+    
+    //每次划线前 需要移除之前的划线
+//    if (self.pokyline) {
+//        [self.mapView removeOverlay:self.pokyline];
+//    }
     
 }
 -(BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id<BMKOverlay>)overlay{
@@ -270,6 +297,14 @@ typedef enum {
     [self fitMapViewForPolyLine:self.pokyline];
     
     self.completetSportView.hidden = NO;
+    // 准备需要的数据
+    CLLocation *firstLoc = [self.lotationArray firstObject];
+    CLLocation *lastLoc  = [self.lotationArray lastObject];
+    self.sumSportTimeLen = [lastLoc.timestamp timeIntervalSince1970] - [firstLoc.timestamp timeIntervalSince1970];
+    // 根据这个人的体重 和 运动方式 运动时间
+    self.sumSportHear = (self.sumSportTimeLen/3600.0) * 600.0;
+    // 运动开始的时间
+    self.sumSportTime = [firstLoc.timestamp timeIntervalSince1970];
 }
 
 - (IBAction)continueBtnClick:(id)sender {
@@ -279,60 +314,175 @@ typedef enum {
     [self.location startUserLocationService];
 }
 #pragma mark -- 把所有的点显示在屏幕上
-- (void) fitMapViewForPolyLine:(BMKPolyline*)polyline{
-    CGFloat ltX,ltY,maxX,MaxY;
+- (void) fitMapViewForPolyLine:(BMKPolyline*) polyline{
+    CGFloat ltX,ltY,maxX,maxY;
     if (polyline.pointCount < 2) {
         return;
     }
     BMKMapPoint pt = polyline.points[0];
     ltX = pt.x, ltY = pt.y;
-    maxX = pt.x,MaxY = pt.y;
-    for (int i = 0; i <polyline.pointCount; i ++) {
+    maxX = pt.x, maxY = pt.y;
+    for (int i = 0; i < polyline.pointCount; i++) {
         BMKMapPoint innerPt = polyline.points[i];
-        if (innerPt.x <ltX) {
+        if (innerPt.x < ltX) {
             ltX = innerPt.x;
         }
-        if (innerPt.y <ltY) {
+        if (innerPt.y < ltY) {
             ltY = innerPt.y;
         }
         if (innerPt.x > maxX) {
             maxX = innerPt.x;
         }
-        if (innerPt.y > MaxY) {
-            MaxY = innerPt.y;
+        if (innerPt.y > maxY) {
+            maxY = innerPt.y;
         }
     }
-    //根据大小 构建一个矩形
-    BMKMapRect rect;
+    // 根据点的分布 构建一个矩形
+    BMKMapRect rect ;
     rect.origin = BMKMapPointMake(ltX - 40, ltY - 60);
-    rect.size = BMKMapSizeMake(maxX - ltX + 80, maxX - ltY + 120);
+    rect.size = BMKMapSizeMake((maxX - ltX) + 80, (maxY - ltY) + 120);
     [self.mapView setVisibleMapRect:rect];
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 - (IBAction)sharedToRuner:(id)sender {
+    NSString *url = [NSString stringWithFormat:@"http://%@:8080/allRunServer/addTopic.jsp",FDXMPPPHOSTNAME];
+    NSMutableDictionary *paramenters = [NSMutableDictionary new];
+    paramenters[@"username"] = [FDUserInfo sharedFDUserInfo].userName;
+    paramenters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userpassword md5Str1];
+    NSString *dataStr = [NSString stringWithFormat:@"本次运动的总距离%.1d米,运动的总时间%.1lf秒,消耗的总热量%.4lf卡",self.sumDistance,self.sumSportTimeLen,self.sumSportHear];
+    paramenters[@"content"] = dataStr;
+    paramenters[@"address"] = @"中国北京";
+    // 最后一个点的经纬度
+    CLLocation *lastLoc = [self.lotationArray lastObject];
+    paramenters[@"latitude"] = @(lastLoc.coordinate.latitude);
+    paramenters[@"longitude"] = @(lastLoc.coordinate.longitude);
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    [manger POST:url parameters:paramenters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        UIImage *image = [self.mapView takeSnapshot];
+        // 宽度是200  高度是等比例的
+        double s = 200.0/image.size.width;
+    UIImage *newImage = [self thumbaiWithImage:image size:CGSizeMake(100, s*image.size.height)];
+        //以时间和当前用户来产生用户名
+        NSDate *date = [NSDate date];
+        NSDateFormatter *matter = [NSDateFormatter new];
+        matter.dateFormat  = @"YYMMDDhh:mm:ss ";
+        NSString *dateStr = [matter stringFromDate:date];
+        NSString *fileName = [NSString stringWithFormat:@"%@%@.png",dateStr,[FDUserInfo sharedFDUserInfo].userName];
+        [formData appendPartWithFileData:UIImagePNGRepresentation(newImage) name:@"pic" fileName:fileName mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        MYLog(@"success %@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MYLog(@"failure:%@",error.userInfo);
+    }];
+}
+
+//压缩图片
+- (UIImage *) thumbaiWithImage:(UIImage *)image size:(CGSize)size {
+    UIImage *newImage = nil;
+    if (image) {
+        UIGraphicsBeginImageContext(size);
+        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+    }
+    return newImage;
+    
 }
 
 - (IBAction)saveBtnClick:(id)sender {
+    [self saveDataToWebServer];
+    //调用清理按钮
+    [self cancelBtnClick:nil];
 }
 
 - (IBAction)cancelBtnClick:(id)sender {
-    [super viewDidLoad];
+    
+    self.StartBtn.hidden = NO;
     self.completetSportView.hidden = YES;
+    //清理运动距离,运动时间,运动总热量,地图上的大头针,地图上 的线
+    //清空数组数据
+    [self.lotationArray removeAllObjects];
+    //移除大头针
+    if (self.startPoint) {
+        [self.mapView removeAnnotation:self.startPoint];
+        self.startPoint = nil;
+    }
+    if (self.endPoint) {
+        [self.mapView removeAnnotation:self.endPoint];
+        self.endPoint = nil;
+    }
+    //移除遮盖物
+    if (self.pokyline) {
+        [self.mapView removeAnnotation:self.pokyline];
+        self.pokyline = nil;
+    }
+    [self.location startUserLocationService];
     
 }
 - (IBAction)sharedToSInaWeiBo:(id)sender {
+    //如果不是微博的登录就拒绝
+    if ([FDUserInfo sharedFDUserInfo].sinaLogin) {
+        NSString *url = @"https://upload.api.weibo.com/2/statuses/upload.json";
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        parameters[@"access_token"] = [FDUserInfo sharedFDUserInfo].userpassword;
+        NSString *status = [NSString stringWithFormat:@"这是一条来自Runer的测试微博,我的位置是"];
+        parameters[@"lat"] = @"28.982";
+        parameters[@"long"] = @"118.844";
+        parameters[@"status"] = status;
+        AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+        [manger POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            //发布图片
+            UIImage *image = [self.mapView takeSnapshot];
+            [formData appendPartWithFileData:UIImagePNGRepresentation(image) name:@"pic" fileName:@"image.png" mimeType:@"image/jpeg"];
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSLog(@"发布成功%@",responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        
+    }else{
+        [MBProgressHUD showError:@"请用sina微博登录"];
+    }
+    
 }
+
+//将数据发送到web 服务器
+- (void)saveDataToWebServer{
+    MYLog(@"把数据存入web服务器");
+    NSString *url = [NSString stringWithFormat:@"http://%@:8080/allRunServer/addSportData.jsp",FDXMPPPHOSTNAME];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"username"] = [FDUserInfo sharedFDUserInfo].userName;
+    parameters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userpassword md5Str1];
+    // 运动类型 1 代表自行车  2 跑步
+    // 3 滑雪  4 散步
+    parameters[@"sportType"] = @(2);
+    // 运动的总距离 总时间 总热量 开始时间
+    parameters[@"sportDistance"] = @(self.sumDistance);
+    parameters[@"sportTimeLen"] = @(self.sumSportTimeLen);
+    parameters[@"sportHeat"] = @(self.sumSportHear);
+    parameters[@"sportStartTime"] = @(self.sumSportTimeLen);
+    // 还有最后一个参数 data 这个参数的构成是这样的  经度|纬度|开始时间@经度|纬度|开始时间
+    parameters[@"data"] = @"116.9|39.4|1232342@116.5|39.1|1233343";
+    // 使用AFN 发送这个请求
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    [manger POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+}
+
+
+
+
+
+
+
+
+
+
 @end

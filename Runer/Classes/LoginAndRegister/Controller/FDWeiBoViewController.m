@@ -18,7 +18,7 @@
 @end
 #define APPKEY @"2871162928"
 #define APPSCRET @"48251a10a8ec697289ed23faf7e0626c"
-#define REDIRECTURL @"https://api.weibo.com/oauth2/default.html"
+#define REDIRECTURL @"http://www.tedu.cn"
 @implementation FDWeiBoViewController
 
 - (void)viewDidLoad {
@@ -30,8 +30,6 @@
     NSString *url = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@",APPKEY,REDIRECTURL];
     NSURL *loadURl = [NSURL URLWithString:url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:loadURl]];
-//    [FDXMPPTool sharedFDXMPPTool].loginDelegate = self;
-//    [FDXMPPTool sharedFDXMPPTool].registerDelegate = self;
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSLog(@"%@",request.URL);
@@ -53,7 +51,7 @@
     */
     NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
     parameter[@"client_id"] = APPKEY;
-    parameter[@"client_secret"] = APPSCRET;
+    parameter[@"client_secret"] = APPKEY;
     parameter[@"grant_type"] = @"authorization_code";
     parameter[@"code"] = code;
     parameter[@"redirect_uri"] = REDIRECTURL;
@@ -69,6 +67,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+    [FDUserInfo sharedFDUserInfo].sinaLogin = YES;
+    [self login];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -86,6 +86,7 @@
 - (void)registerSuccess{
     //发送web注册的请求
     [self webRegisterForServer];
+     [FDXMPPTool sharedFDXMPPTool].registerDelegate = self;
     
 }
 - (void)login{
@@ -112,7 +113,7 @@
     //准备参数
     NSMutableDictionary *parmaters = [NSMutableDictionary dictionary];
     parmaters[@"username"] = [FDUserInfo sharedFDUserInfo].userRegisterName;
-#warning 完成 md5 加密
+    #warning 完成 md5 加密
     parmaters[@"md5password"] = [[FDUserInfo sharedFDUserInfo].userRegisterPassword md5Str1];
     
     parmaters[@"nickname"] = [FDUserInfo sharedFDUserInfo].userRegisterName;

@@ -18,7 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.manager = [BMKMapManager new];
     [self.manager start:@"izFdfwhWdXIv7YjvY9OzbQ9mvOOcVrKF" generalDelegate:self];
+    [self setNavThme];
     return YES;
+}
+-(void)setNavThme{
+    UINavigationBar *bar = [UINavigationBar appearance];
+    bar.backgroundColor = [UIColor colorWithRed:0.604 green:1.000 blue:0.517 alpha:1.000];
 }
 //联网状态
 - (void)onGetNetworkState:(int)iError{

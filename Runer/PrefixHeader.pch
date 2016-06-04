@@ -9,8 +9,8 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 //主机名
-#define FDXMPPPHOSTNAME @"172.60.21.68"
-//#define FDXMPPPHOSTNAME @"127.0.0.1"
+//#define FDXMPPPHOSTNAME @"172.60.21.125"
+#define FDXMPPPHOSTNAME @"127.0.0.1"
 //#define FDXMPPPHOSTNAME @"172.60.50.42"
 //端口号
 #define FDXMPPPORT 5222
@@ -25,9 +25,21 @@
 
 
 //网络注册 对应的url
-#define WEBREGISTER_URL @"http://172.60.21.68:8080/allRunServer/register.jsp"
+#define WEBREGISTER_URL @"http://FDXMPPPHOSTNAME:8080/allRunServer/register.jsp"
 
 #import "UIImageView+roundImage.h"
+
+//区分运动模式的枚举类型
+enum FDSportModel{
+    FDSportModelBick = 1,
+    FDSportModelRun,
+    FDSportModelSkiing,
+    FDSportModelFreeWalk
+};
+
+
+
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

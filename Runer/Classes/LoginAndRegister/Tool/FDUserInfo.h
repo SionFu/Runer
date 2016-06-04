@@ -36,4 +36,8 @@ singleton_interface(FDUserInfo)
  *  获取当前用户对应的用户的idStr
  */
 @property (nonatomic, copy, readonly) NSString  *jidStr;
+/**
+ *  用来判断是否为新浪微博登录
+ */
+@property (nonatomic, assign) BOOL sinaLogin;
 @end
